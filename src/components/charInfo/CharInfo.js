@@ -39,6 +39,7 @@ class CharInfo extends Component {
             .then(this.onCharLoaded)
             .catch(this.onError);
     }
+
     onCharLoaded = (char) => {
         //как только загружаются данные, loading меняется на false => спиннер меняется на данные
         this.setState({
@@ -109,6 +110,7 @@ const View = ({char}) => {
                 {comics.length > 0 ? null : 'There are no comics with this character'}
                 {
                     comics.map((item, i) => {
+                        // eslint-disable-next-line
                         if(i > 10) return;
                         return(
                             <li key={i} className="char__comics-item">{item.name}</li>
