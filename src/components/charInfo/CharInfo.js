@@ -1,4 +1,4 @@
-import {Component} from 'react';
+import {useState, useEffect} from 'react';
 import PropTypes from 'prop-types';
 
 import MarvelService from '../../services/MarvelService';
@@ -8,63 +8,45 @@ import Skeleton from '../skeleton/Skeleton';
 
 import './charInfo.scss';
 
-class CharInfo extends Component {
-    state = {
-        char: null,
-        loading: false,
-        error: false
-    }
+const CharInfo = (props) => {
     
-    marvelService = new MarvelService();
+    const [char, setChar] = useState(null);
+    const [loading, setLoading] = useState(false);
+    const [error, setError] = useState(false);
 
-    componentDidMount() {
-        this.updateChar();
-    }
+    const marvelService = new MarvelService();
 
-    componentDidUpdate(prevProps){
-        if(this.props.charId !== prevProps.charId) {
-            this.updateChar();
-        }
-    }
+    useEffect(() => {
+        updateChar();
+    }, [props.charId])
 
-    updateChar = () => {
-        const {charId} = this.props;
+    const updateChar = () => {
+        const {charId} = props;
         if (!charId) {
             return;
         }
-
-        this.onCharLoading();
-
-        this.marvelService
+        onCharLoading();
+        marvelService
             .getCharacter(charId)
-            .then(this.onCharLoaded)
-            .catch(this.onError);
+            .then(onCharLoaded)
+            .catch(onError);
     }
 
-    onCharLoaded = (char) => {
+    const onCharLoaded = (char) => {
         //как только загружаются данные, loading меняется на false => спиннер меняется на данные
-        this.setState({
-            char, 
-            loading: false
-        })
+        setChar(char);
+        setLoading(false);
     }
-    onCharLoading = () => {
-        this.setState({
-            loading: true
-        })
+    const onCharLoading = () => {
+        setLoading(true);
     }
 
-    onError = () => {
-        this.setState({
-            loading: false,
-            error: true
-        })
+    const onError = () => {
+        setLoading(false);
+        setError(true);
     }
-    
-    render () {
-        const {char, loading, error} = this.state;
 
-        const skeleton = char || error || loading ? null : <Skeleton/>
+        const skeleton = char || loading || error ? null : <Skeleton/>;
         const errorMessage = error ? <ErrorMessage/> : null;
         const spinner = loading ? <Spinner/> : null;
         const content = !(loading || error || !char) ? <View char={char}/> : null;
@@ -77,7 +59,6 @@ class CharInfo extends Component {
                 {content}
             </div>
         )
-    }
     
 }
 
@@ -86,7 +67,7 @@ const View = ({char}) => {
 
     let imgStyle = {'objectFit' : 'cover'};
     if (thumbnail === 'http://i.annihil.us/u/prod/marvel/i/mg/b/40/image_not_available.jpg') {
-            imgStyle = {'objectFit' : 'unset'};
+            imgStyle = {'objectFit' : 'contain'};
             }
     return (
         <>
@@ -112,7 +93,7 @@ const View = ({char}) => {
                 {
                     comics.map((item, i) => {
                         // eslint-disable-next-line
-                        if(i > 10) return;
+                        if(i > 9) return;
                         return(
                             <li key={i} className="char__comics-item">{item.name}</li>
                         )
