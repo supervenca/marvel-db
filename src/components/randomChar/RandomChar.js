@@ -60,7 +60,7 @@ const RandomChar = () => {
 }
 
 const View = ({char}) => {
-    const {name, description, thumbnail, homepage} = char;
+    const {name, description, thumbnail, wiki} = char;
     let imgStyle = {'objectFit' : 'cover'};
     if (thumbnail === 'http://i.annihil.us/u/prod/marvel/i/mg/b/40/image_not_available.jpg') {
         imgStyle = {'objectFit' : 'contain'};
@@ -75,12 +75,12 @@ const View = ({char}) => {
                     {description}
                 </p>
                 <div className="randomchar__btns">
-                    <a href={homepage} className="button button__main">
+                <Link to={`/characters/${char.id}`} className="button button__main">
                         <div className="inner">homepage</div>
-                    </a>
-                    <Link to={`/characters/${char.id}`} className="button button__secondary">
-                        <div className="inner">Wiki</div>
-                    </Link>
+                </Link>
+                <a href={wiki} className="button button__secondary">
+                    <div className="inner">Wiki</div>
+                </a>
                 </div>
             </div>
         </div>
