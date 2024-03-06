@@ -8,7 +8,7 @@ const useMarvelService = () => {
 
     
     const getAllCharacters = async (offset = _baseOffSet) => {
-        const res = await request(`https://gateway.marvel.com:443/v1/public/characters?limit=9&offset=${offset}&apikey=fb362d4261f1e307fa153563545a7b83`);
+        const res = await request(`https://gateway.marvel.com:443/v1/public/characters?orderBy=modified&limit=9&offset=${offset}&apikey=fb362d4261f1e307fa153563545a7b83`);
         return res.data.results.map(_transformCharacter);
     }
     const getCharacter = async (id) => {
@@ -16,7 +16,7 @@ const useMarvelService = () => {
         return _transformCharacter(res.data.results[0]);
     }
     const getCharacterByName = async (name) => {
-		const res = await request(`https://gateway.marvel.com:443/v1/public/characters?name=${name}&apikey=fb362d4261f1e307fa153563545a7b83`);
+		const res = await request(`https://gateway.marvel.com:443/v1/public/characters?nameStartsWith=${name}&apikey=fb362d4261f1e307fa153563545a7b83`);
 		return res.data.results.map(_transformCharacter);
 	}
 
