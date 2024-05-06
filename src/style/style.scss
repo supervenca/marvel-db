@@ -1,6 +1,7 @@
 @import './variables';
 @import url('https://fonts.googleapis.com/css2?family=Roboto+Condensed:wght@400;700&display=swap');
 @import './button';
+@import './mixins';
 
 * {
     font-family: "Roboto Condensed", sans-serif;
@@ -48,15 +49,20 @@ input::-webkit-inner-spin-button {
 }
 
 .app {
-    width: 1100px;
+    width: 100%;
     margin: 0 auto;
-    padding: 50px 0 50px 0;
+    padding: 50px;
     position: relative;
     .bg-decoration {
         position: absolute;
-        right: -174px;
+        right: 0;
         bottom: -70px;
         z-index: -1;
+        @include respond(small-desktop) {
+            display: block;
+            position: relative;
+            margin: 0 auto;
+        }
     }
 }
 
