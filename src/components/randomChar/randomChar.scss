@@ -15,6 +15,10 @@
         display: grid;
         grid-template-columns: 180px auto;
         column-gap: 30px;
+        @include respond(phone) {
+            padding: 10px;
+            margin-bottom: 35px;
+        };
     }
     &__img {
         width: 180px;
@@ -40,12 +44,25 @@
     &__btns {
         a:nth-child(1) {
             margin-right: 30px;
+            @include respond(phone) {
+                margin-bottom: 10px;
+                margin-right: 0px;
+            };
         }
     }
     &__static {
         padding: 40px 35px;
         background-color: $dark;
         position: relative;
+        @include respond(phone) {
+            padding: 10px;
+            & img {
+                display: none;
+            }
+        };
+        @include respond(phone) {
+            margin-top: 25px;
+        };
         button {
             margin-top: 13px;
         }

@@ -1,4 +1,5 @@
 @import '../../style/variables.scss';
+@import '../../style/mixins';
 
 .search {
     margin-top: 25px;
@@ -7,11 +8,17 @@
     position: relative;
     z-index: 5;
     background-color: #fff;
+    @include respond(phone) {
+        padding: 10px;
+    };
     &-wrapper {
         display: flex;
         flex-direction: row;
         justify-content: space-between;
         align-items: center;
+        @include respond(phone) {
+            flex-direction: column;
+        };
         &__result {
             margin-top: 25px;
         }
@@ -29,6 +36,10 @@
         margin-right: 24px;
         border: none;
         box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+        @include respond(phone) {
+            margin-bottom: 25px;
+            width: 80%;
+        };
         &:focus {
             outline: none;
         }
@@ -37,6 +48,9 @@
         color: $success;
         font-size: 18px;
         font-weight: 700;
+        @include respond(phone) {
+            margin-bottom: 25px;
+        };
     }
     &__error {
         color: $main-color;

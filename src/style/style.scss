@@ -53,6 +53,9 @@ input::-webkit-inner-spin-button {
     margin: 0 auto;
     padding: 50px;
     position: relative;
+    @include respond (phone) {
+        padding: 10px;
+    }
     .bg-decoration {
         position: absolute;
         right: 0;
@@ -63,6 +66,9 @@ input::-webkit-inner-spin-button {
             position: relative;
             margin: 0 auto;
         }
+        @include respond(phone) {
+                display: none;
+        };
     }
 }
 

@@ -1,4 +1,5 @@
 @import '../../style/variables.scss';
+@import '../../style/mixins';
 
 .char {
     &__info {
@@ -7,6 +8,9 @@
         position: relative;
         z-index: 5;
         background-color: #fff;
+        @include respond(phone) {
+            padding: 10px;
+        };
         &-name {
             font-weight: bold;
             font-size: 22px;
@@ -21,10 +25,18 @@
         display: grid;
         grid-template-columns: 150px auto;
         column-gap: 25px;
+        @include respond(phone) {
+            grid-template-columns: 100%;
+            column-gap: 10px;
+        };
         img {
             width: 150px;
             height: 150px;
             //object-fit: cover;
+            @include respond(phone) {
+                width: 90px;
+                height: 90px;
+            };
         }
     }
     &__btns {

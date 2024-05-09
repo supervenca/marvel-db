@@ -14,6 +14,9 @@
         @include respond(tablet) {
             grid-template-columns: 30% 67%;
         };
+        @include respond(phone) {
+            grid-template-columns: 50% 47%;
+        };
     }
     &__grid {
         display: grid;

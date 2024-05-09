@@ -1,4 +1,6 @@
 @import '../../style/variables.scss';
+@import '../../style/mixins';
+
 
 .app {
     &__header {
@@ -11,6 +13,9 @@
         line-height: 37px;
         span {
             color: $main-color;
+        }
+        @include respond(phone) {
+            font-size: 25px;
         }
     }
     &__menu {
