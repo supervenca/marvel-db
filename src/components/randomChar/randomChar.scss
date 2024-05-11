@@ -18,6 +18,7 @@
         @include respond(phone) {
             padding: 10px;
             margin-bottom: 35px;
+            column-gap: 10px;
         };
     }
     &__img {

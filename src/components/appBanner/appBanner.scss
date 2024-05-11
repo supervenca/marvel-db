@@ -1,4 +1,5 @@
 @import '../../style/variables.scss';
+@import '../../style/mixins';
 
 .app {
     &__banner {
@@ -8,6 +9,9 @@
         padding: 0 25px 0 45px;
         display: grid;
         grid-template-columns: 152px auto 133px;
+        @include respond(phone) {
+            display: none;
+        }
         &-text {
             font-weight: bold;
             font-size: 24px;
@@ -15,6 +19,11 @@
             color: #FFFFFF;
             padding-left: 83px;
             padding-top: 18px;
+            @include respond(tablet) {
+                font-size: 20px;
+                line-height: normal;
+                padding-left: 25px;
+            }
         }
     }
 }
