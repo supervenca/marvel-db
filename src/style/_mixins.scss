@@ -6,7 +6,7 @@
         }
      }
     @if $breakpoint == phone {
-       @media only screen and (max-width: 600px){
+       @media only screen and (max-width: 668px){
         @content
        }
     }
@@ -33,6 +33,6 @@
 
 };
 // .element
-//     @include respond(phone) {
-//         padding: 5rem 0;
-//     }
+    // @include respond(phone) {
+    //     padding: 5rem 0;
+    // }
